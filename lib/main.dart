@@ -73,28 +73,33 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          FloatingActionButton(
-            onPressed: () {
-              counterBloc.sinkEvent.add(CounterAction.Increment);
-            },
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
+          Expanded(
+            child: FloatingActionButton(
+              onPressed: () {
+                counterBloc.sinkEvent.add(CounterAction.Increment);
+              },
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
           ),
-          FloatingActionButton(
-            onPressed: () {
-              counterBloc.sinkEvent.add(CounterAction.Decrement);
-            },
-            tooltip: 'Decrement',
-            child: Icon(Icons.remove),
+          Expanded(
+            child: FloatingActionButton(
+              onPressed: () {
+                counterBloc.sinkEvent.add(CounterAction.Decrement);
+              },
+              tooltip: 'Decrement',
+              child: Icon(Icons.remove),
+            ),
           ),
-          FloatingActionButton(
-            onPressed: () {
-              counterBloc.sinkEvent.add(CounterAction.Reset);
-            },
-            tooltip: 'Reset',
-            child: Icon(Icons.restore),
+          Expanded(
+            child: FloatingActionButton(
+              onPressed: () {
+                counterBloc.sinkEvent.add(CounterAction.Reset);
+              },
+              tooltip: 'Reset',
+              child: Icon(Icons.restore),
+            ),
           ),
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
