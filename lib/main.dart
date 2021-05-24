@@ -37,9 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-@override
+  @override
   void dispose() {
-  counterBloc.dispose();
+    counterBloc.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -49,7 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
     print('WIDGET TREE');
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w500),),
+        backgroundColor: Color(0xFFe4efe7),
+        elevation: 1,
+        title: Text(
+          widget.title,
+          style: TextStyle(color: Colors.black54, fontSize: 20, fontWeight: FontWeight.w500),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -57,18 +62,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',style: Theme.of(context).textTheme.bodyText1,
+              'You have pushed the button this many times:',
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             StreamBuilder<int>(
-              stream: counterBloc.streamState,
-              initialData: 0,
-              builder: (context, snapshot) {
-                return Text(
-                  '${snapshot.data.toString()}',
-                  style: Theme.of(context).textTheme.headline1,
-                );
-              }
-            ),
+                stream: counterBloc.streamState,
+                initialData: 0,
+                builder: (context, snapshot) {
+                  return Text(
+                    '${snapshot.data.toString()}',
+                    style: Theme.of(context).textTheme.headline1,
+                  );
+                }),
           ],
         ),
       ),
