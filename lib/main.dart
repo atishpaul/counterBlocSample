@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print('WIDGET TREE');
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title,style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w500),),
         centerTitle: true,
       ),
       body: Center(
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'You have pushed the button this many times:',style: Theme.of(context).textTheme.bodyText1,
             ),
             StreamBuilder<int>(
               stream: counterBloc.streamState,
@@ -65,43 +65,56 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (context, snapshot) {
                 return Text(
                   '${snapshot.data.toString()}',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline1,
                 );
               }
             ),
           ],
         ),
       ),
-      floatingActionButton: Row(
-        children: [
-          Expanded(
-            child: FloatingActionButton(
-              onPressed: () {
-                counterBloc.sinkEvent.add(CounterAction.Increment);
-              },
-              tooltip: 'Increment',
-              child: Icon(Icons.add),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(50),
+          child: Container(
+            color: Color(0xFFcaf7e3),
+            padding: EdgeInsets.all(15),
+            child: Row(
+              children: [
+                Expanded(
+                  child: FloatingActionButton(
+                    elevation: 2,
+                    onPressed: () {
+                      counterBloc.sinkEvent.add(CounterAction.Increment);
+                    },
+                    tooltip: 'Increment',
+                    child: Icon(Icons.add),
+                  ),
+                ),
+                Expanded(
+                  child: FloatingActionButton(
+                    elevation: 2,
+                    onPressed: () {
+                      counterBloc.sinkEvent.add(CounterAction.Decrement);
+                    },
+                    tooltip: 'Decrement',
+                    child: Icon(Icons.remove),
+                  ),
+                ),
+                Expanded(
+                  child: FloatingActionButton(
+                    elevation: 2,
+                    onPressed: () {
+                      counterBloc.sinkEvent.add(CounterAction.Reset);
+                    },
+                    tooltip: 'Reset',
+                    child: Icon(Icons.restore),
+                  ),
+                ),
+              ],
             ),
           ),
-          Expanded(
-            child: FloatingActionButton(
-              onPressed: () {
-                counterBloc.sinkEvent.add(CounterAction.Decrement);
-              },
-              tooltip: 'Decrement',
-              child: Icon(Icons.remove),
-            ),
-          ),
-          Expanded(
-            child: FloatingActionButton(
-              onPressed: () {
-                counterBloc.sinkEvent.add(CounterAction.Reset);
-              },
-              tooltip: 'Reset',
-              child: Icon(Icons.restore),
-            ),
-          ),
-        ],
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
